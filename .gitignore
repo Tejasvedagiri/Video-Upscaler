@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Model weights (downloaded with `video-upscaler --download`)
+models/*
+!models/.gitkeep
+
+# Upscaled outputs
+*_upscaled/
+.*.partial.*
+
+# e2e test clips
+tests/data/

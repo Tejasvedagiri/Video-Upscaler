@@ -1,0 +1,38 @@
+[project]
+name = "video-upscaler"
+version = "0.1.0"
+description = "Upscale anime, cartoons, series and movies to 4K/2K with SR models on Apple Silicon (Metal/MPS)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.4",
+    "safetensors>=0.8.0",
+    "spandrel>=0.4.2",
+    "torch>=2.14.1",
+    "torchvision>=0.29.1",
+    "tqdm>=4.70.1",
+]
+
+[project.scripts]
+video-upscaler = "video_upscaler.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+markers = ["e2e: end-to-end video upscale (downloads clips, needs ffmpeg + MPS)"]
+addopts = "-m 'not e2e'"
